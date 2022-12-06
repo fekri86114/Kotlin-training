@@ -1,42 +1,46 @@
-private class Human ( nameHuman: String , familyHuman: String , mobileHuman: String ) {
-
-     private var name: String = nameHuman
-     private val lastName: String = familyHuman
-     private val phoneNumber: String = mobileHuman
-
-    fun introduce() {
+open class Human(
+    open protected val name: String,
+    protected val lastName: String,
+    protected val phoneNumber: String
+) {
+    open fun introduce() {
         println("Hello, I'm $name $lastName. My phone number: $phoneNumber")
     }
-
-    fun sayHello() {
-        println("Hello everyone!")
-    }
-
-    fun sayGoodbye() {
-        println("Goodbye!")
-    }
-
-    fun eatBreakfast() {
-        println("I'm eating breakfast")
-    }
-
-    fun goToSchool() {
-        println("I'm going to school")
-    }
-
-    fun sleep() {
-        println("I'm sleeping")
-    }
-
-    fun eatFruit( nameFruit: String ) {
-        println("I'm eating $nameFruit")
-    }
-
 }
 
+class Student(
+    private val studentId: Int,
+    private val entranceYear: Int,
+    private val passedCourses: Int,
+    private val nameUniversity: String,
+    private val rankUniversity: Int,
+    name: String,
+    lastName: String,
+    phoneNumber: String
+) : Human(name, lastName, phoneNumber) {
+
+    override val name: String
+        get() = "Mohammadreza"
+
+    override fun introduce() {
+        super.introduce()
+        println("name: $name")
+        println("lastname: $lastName")
+        println("phone number: $phoneNumber")
+        println("university name: $nameUniversity")
+        println("university rank: $rankUniversity")
+    }
+}
 fun main() {
-    val hadi = Human( "hadi" , "fekri" , "09141001010" )
-    hadi.introduce()
+    val sara = Student(
+        202,
+        2025,
+        5,
+        "Stanford",
+        3,
+        "Sara",
+        "Jackson",
+        "012345678910"
+    )
+    sara.introduce()
 }
-
-// 19 is done
